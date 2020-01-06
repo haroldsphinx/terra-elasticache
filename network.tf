@@ -4,16 +4,16 @@ resource "aws_vpc" "default" {
     cidr_block = "${var.vpc_cidr_block}"
     enable_dns_hostnames = true
 
-    tags {
+    tags = {
         Name = "${var.namespace}"
     }
 }
 
 # internet gateway 
-resource "aws_internet-gateway" "default" {
+resource "aws_internet_gateway" "default" {
     vpc_id = "${aws_vpc.default.id}"
 
-    tags {
+    tags = {
         Name = "${var.namespace}"
     }
 }
@@ -23,7 +23,7 @@ resource "aws_internet-gateway" "default" {
 resource "aws_route" "internet_access" {
   route_table_id = "${aws_vpc.default.main_route_table_id}"
   destination_cidr_block = "0.0.0.0/0"
-  gateway_id = "${aws_internet-gateway.default.id}"
+  gateway_id = "${aws_internet_gateway.default.id}"
 }
 
 # Grab the list of Availability Zones
@@ -39,7 +39,7 @@ resource "aws_subnet" "default" {
   availability_zone = "${data.aws_availability_zones.available.names[count.index]}"
   cidr_block = "${var.cidr_block[count.index]}"
 
-  tags {
+  tags = {
       Name = "${var.namespace}"
   }
 }
