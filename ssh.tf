@@ -18,6 +18,14 @@ data "template_file" "startup" {
     template = "${file("${path.module}/templates/startup.sh.tpl")}"
 }
 
+data "template_file" "backup" {
+    template = "${file("${path.module}/templates/backup.sh.tpl")}"
+}
+
+data "template_file" "restore" {
+    template = "${file("${path.module}/templates/restore.sh.tpl")}"
+}
+
 resource "aws_key_pair" "elasticache" {
     key_name = "${var.namespace}-elasticache"
     public_key = "${file("${var.public_key_path}")}"
