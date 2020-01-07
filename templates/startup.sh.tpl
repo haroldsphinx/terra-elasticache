@@ -6,9 +6,12 @@ sudo apt-get install -y redis-tools
 # To Do
 
 # Install AWS CLI
+curl -O https://bootstrap.pypa.io/get-pip.py
+sudo apt install -y python3
+python3 get-pip.py --user
+export PATH=~/.local/bin:$PATH
+source ~/.bash_profile
+pip3 install awscli --upgrade --user
 
-# Setup IAM Policy for Elasticache
 
-# run elasticache backup command
-
-# Run elasticache restore command
+# setup aws cli with the company keys and credentials
